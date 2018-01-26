@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<title>Basic Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">  
+	{% load static %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" >
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+		<a class="navbar-brand" href="#">BYEBUY</a>
+		</div>
+	</div>
+	</nav>
+	<main class="container-fluid" style="margin-top:50px">
+		<div class="pull-left">
+			<ul>
+				<li>
+					<form>
+						<div class="input-group search">
+							<input type="text" id="searchbox" value="{{search}}" class="form-control" placeholder="Search">
+							<div class="input-group-btn">
+							<button class="btn btn-default" onclick="search()" type="button">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+							</div>
+						</div>
+					</form>
+				</li>
+				
+				<li>
+					<h4>Brand</h4>
+					<div class="form-group">
+						<select class="form-control" id="sel1">
+							<option value="">Select a brand</option>
+							{% for i in brand %}
+							{% ifequal brand_name i.brand_name %}
+							<option value="{{i.brand_name}}" selected>{{i.brand_name}}</option>
+							{% else %}
+							<option value="{{i.brand_name}}">{{i.brand_name}}</option>
+							{% endifequal %}
+							{% endfor %}
+						</select>
+					</div>
+				</li>
+				
+				<li>
+					<h4>Color</h4>
+					<div class="checkbox">
+					{% for i in colour %}
+					{% if i.colour in sl_colour %}
+						<label><input class="colourbox" type="checkbox" value="{{i.colour}}" checked>{{i.colour}}</label></br>
+					{% else %}
+						<label><input class="colourbox" type="checkbox" value="{{i.colour}}">{{i.colour}}</label></br>	
+					
+					{% endif %}
+					{% endfor %}
+					</div>
+					
+				</li>
+				
+				<li>
+					<h4>Available Types</h4>
+					<div class="radio">
+					{% for i in types %}
+						<label><input class="optradio" type="radio" value="{{i}}" name="optradio">{{i}}</label>
+					{% endfor %}	
+					</div>
+					
+				</li>
+				
+				<li>
+					<h4>Price</h4>
+					<div class="slidecontainer">
+						<input type="range" min="{{ price_min }}" max="{{ price_max }}" class="pricerange" value="{{sl_price}}" class="slider" id="pricerange">
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="pull-right">
+			<h1>Camera</h1>
+			<ul>
+				{% for i in products %}
+
+				<li class="col-md-3 col-sm-4 col-xs-12">
+					<div class="item">
+						<div class="item-img">
+						{% for j in i.product_image.all %}
+
+							<img height="100" width="100" src="http://127.0.0.1:8000{{j.image.url}}">
+						{% endfor %}
+
+						</div>
+						<div class="item-content">
+							<h5 class="pull-left">{{i.product_name}}</h5>
+							<h5 class="pull-right"><span class="glyphicon glyphicon-heart"></span></h5>
+						</div>
+					</div>
+				</li>
+				{% endfor %}
+				
+			</ul>
+		</div>
+	</main>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+<body>
+	
+</div>
+</body>
+</html>
