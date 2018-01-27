@@ -64,8 +64,13 @@
 				<li>
 					<h4>Available Types</h4>
 					<div class="radio">
+					<label><input class="optradio" type="radio" value="" name="optradio" checked>None</label><br>
 					{% for i in types %}
-						<label><input class="optradio" type="radio" value="{{i}}" name="optradio">{{i}}</label>
+					{% ifequal s_type i %}
+						<label><input class="optradio" type="radio" value="{{i}}" name="optradio" checked>{{i}}</label><br>
+					{% else %}
+						<label><input class="optradio" type="radio" value="{{i}}" name="optradio">{{i}}</label><br>
+					{% endifequal %}
 					{% endfor %}	
 					</div>
 					
