@@ -9,8 +9,6 @@ def home(request):
 	n_products = Product.objects.all()
 	colour = Colour.objects.all()
 	brand_name = request.GET.get("brand_name", None)
-	print brand_name
-	print request.GET
 	search = request.GET.get("search","")
 	sl_colour = request.GET.get("colours", None)
 	sl_type = request.GET.get("sl_type",None)
@@ -60,7 +58,6 @@ def home(request):
 	if search:
 		products = products.filter(Q(product_brand__brand_name__contains=search)|Q(product_item__item_name__contains=search)|Q(product_name__contains=search))
 	
-	print types
 	context = {'brand':brand,'types':types,'colour':colour,'products':products}
 	context["brand_name"] = brand_name
 	context["sl_colour"] = sl_colour

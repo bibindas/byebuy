@@ -42,14 +42,12 @@ function buildurl(){
     var qm = false
     if (search){
     	if (qm==false){
-    		console.log("1")
     	var clean_url = clean_url+"?search="+search
     	qm=true
        	}
 	}
     
     if (brand_name){
-    	console.log("2")
     	if (qm==true){
     		var clean_url = clean_url+"&brand_name="+brand_name
     	}
@@ -59,7 +57,6 @@ function buildurl(){
     	}
     }
     if (sl_type){
-    	console.log("3")
     	if (qm==true){
     		var clean_url = clean_url+"&sl_type="+sl_type
     	}
@@ -70,20 +67,15 @@ function buildurl(){
     }
     if (sl_price && price_changed){
     	price_changed = false
-    	console.log("4")
     	if (qm==true){
-    		console.log("ooooo")
     	var clean_url = clean_url+"&sl_price="+sl_price
 		}
 		else{
-			console.log("uu")
 			var clean_url = clean_url+"?sl_price="+sl_price
 			qm=true
 		}	
     }
     if (colours.length > 0){
-    	console.log("5")
-    	console.log(colours)
     	if (qm==true){
     		var clean_url = clean_url+"&colours="+colours
     	}
